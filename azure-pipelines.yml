@@ -24,6 +24,7 @@ steps:
 - task: BatchScript@1
   inputs:
     filename: 'src\PokerLeagueManager.UI.Web\BuildAngular.bat'
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -35,3 +36,9 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ArtBuild'
+    publishLocation: 'Container'
